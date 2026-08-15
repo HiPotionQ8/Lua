@@ -1302,12 +1302,15 @@ fields.incoming[0x00A] = L{
     {ctype='unsigned char',     label='Animation Speed'},                       -- 1D   32 represents 100%
     {ctype='unsigned char',     label='HP %',               fn=percent},        -- 1E
     {ctype='unsigned char',     label='Status',             fn=statuses},       -- 1F
-    {ctype='data[16]',          label='_unknown1'},                             -- 20
-    {ctype='unsigned short',    label='Zone',               fn=zone},           -- 30
-    {ctype='data[6]',           label='_unknown2'},                             -- 32
+    {ctype='data[4]',           label='flags2'},                                -- 20
+    {ctype='data[4]',           label='flags3'},                                -- 
+    {ctype='data[4]',           label='flags4'},                                -- 
+    {ctype='unsigned int',      label='BtTargetID'},                            -- 
+    {ctype='unsigned int',      label='Zone',               fn=zone},           -- 30
+    {ctype='data[4]',           label='_unknown2'},                             -- 
     {ctype='unsigned int',      label='Timestamp 1',        fn=time},           -- 38
     {ctype='unsigned int',      label='Timestamp 2',        fn=time},           -- 3C
-    {ctype='unsigned short',    label='_unknown3'},                             -- 40
+    {ctype='unsigned short',    label='EventNo'},                               -- 40
     {ctype='unsigned short',    label='_dupeZone',          fn=zone},           -- 42
     {ctype='unsigned char',     label='Face'},                                  -- 44
     {ctype='unsigned char',     label='Race'},                                  -- 45
@@ -1324,29 +1327,38 @@ fields.incoming[0x00A] = L{
     {ctype='unsigned short',    label='Solo Combat Music'},                     -- 5A
     {ctype='unsigned short',    label='Party Combat Music'},                    -- 5C
     {ctype='unsigned short',    label='Mount Music'},                           -- 5E
-    {ctype='data[2]',           label='_unknown4'},                             -- 60
+    {ctype='unsigned short',    label='SubMapNumber'},                          -- 60
     {ctype='unsigned short',    label='Menu Zone'},                             -- 62   Only set if the menu ID is sent, used as the zone for menu responses (0x5b, 0x5c)
     {ctype='unsigned short',    label='Menu ID'},                               -- 64
-    {ctype='unsigned short',    label='_unknown5'},                             -- 66
+    {ctype='unsigned short',    label='EventMode'},                             -- 66
     {ctype='unsigned short',    label='Weather',            fn=weather},        -- 68
-    {ctype='unsigned short',    label='_unknown6'},                             -- 6A
-    {ctype='data[24]',          label='_unknown7'},                             -- 6C
+    {ctype='unsigned short',    label='Weather2',           fn=weather},        -- 6A
+    {ctype='unsigned int',      label='WeatherTime',           fn=time},        -- 6C
+    {ctype='unsigned int',      label='WeatherTime2',          fn=time},        -- 
+    {ctype='unsigned int',      label='WeatherOffsetTime'},                     -- 
+    {ctype='unsigned int',      label='ShipStart'},                             -- 
+    {ctype='unsigned short',    label='ShipEnd'},                               -- 
+    {ctype='unsigned short',    label='IsMonstrosity'},                         -- 
+	{ctype='data[4]',           label='_unknown7'},                             -- 
     {ctype='char[16]',          label='Player Name'},                           -- 84
-    {ctype='data[12]',          label='_unknown8'},                             -- 94
+	{ctype='data[8]',           label='certificate'},                           -- 94
+    {ctype='data[2]',           label='_unknown8'},                             -- 
+	{ctype='unsigned short',    label='ZoneSubNo'},                             -- 
     {ctype='unsigned int',      label='Abyssea Timestamp',  fn=time},           -- A0
-    {ctype='unsigned int',      label='_unknown9',          const=0x0003A020},  -- A4
+    {ctype='unsigned int',      label='DeadCounter',        const=0x0003A020},  -- A4
     {ctype='data[2]',           label='_unknown10'},                            -- A8
     {ctype='unsigned short',    label='Zone model'},                            -- AA
     {ctype='data[2]',           label='_unknown11'},                            -- AC   0xAC is 2 for some zones, 0 for others
     {ctype='unsigned char',     label='MH Door Menu',fn=e+{'mh door menus'}},   -- AE   Updated when Mog House entered. Determines which MH exits are available in door/exit menu.
                                                                                 --      Persists through zoning and logout. see enum for more info
     {ctype='unsigned char',     label='Nomad Moogle'},                          -- AF   set to 1 iff nomad moogle menu is accessible in zone (Odyssey:Gaol, Mhaura, Norg, etc -- but not mog house or mog garden)
-    {ctype='data[4]',           label='_unknown12'},                            -- B0
+    {ctype='unsigned short',    label='mon_no'},                                -- B0
+    {ctype='unsigned short',    label='face_no'},                               -- 
     {ctype='unsigned char',     label='Main Job',           fn=job},            -- B4
-    {ctype='unsigned char',     label='_unknown12'},                            -- B5
-    {ctype='unsigned char',     label='_unknown13'},                            -- B6
+    {ctype='unsigned char',     label='hair'},                                  -- B5
+    {ctype='unsigned char',     label='size'},                                  -- B6
     {ctype='unsigned char',     label='Sub Job',            fn=job},            -- B7
-    {ctype='unsigned int',      label='_unknown14'},                            -- B8
+    {ctype='unsigned int',      label='unlocked jobs'},                         -- B8
     {ref=types.job_level,       lookup={res.jobs, 0x00},    count=0x10},        -- BC
     {ctype='signed short',      label='STR'},                                   -- CC
     {ctype='signed short',      label='DEX'},                                   -- CE
@@ -1364,7 +1376,10 @@ fields.incoming[0x00A] = L{
     {ctype='signed short',      label='CHR Bonus'},                             -- E6
     {ctype='unsigned int',      label='Max HP'},                                -- E8
     {ctype='unsigned int',      label='Max MP'},                                -- EC
-    {ctype='data[20]',          label='_unknown15'},                            -- F0
+    {ctype='unsigned char',     label='sjobflg'},                               -- F0
+	{ctype='data[3]',           label='_unknown41'},                            -- 
+	{ctype='data[12]',          label='ConfData'},                              -- 
+	{ctype='unsigned int',      label='Ex'},                                    -- 
 }
 
 -- Zone Response
